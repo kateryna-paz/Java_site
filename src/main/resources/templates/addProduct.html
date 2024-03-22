@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Створення продукції</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="pb-3">Додавання нового продукту</h1>
+        <form method="POST" th:action="@{/products/add}" th:object="${product}">
+            <div class="form-group">
+                <label for="name">Назва:</label>
+                <input type="text" class="form-control" id="name" name="name" th:value="${product.name}">
+            </div>
+            <div class="d-flex flex-row">
+                <div class="form-group pr-2 w-50">
+                    <label for="group">Група продукції:</label>
+                    <select class="form-control" id="group" name="productGroup" th:field="*{productGroup}">
+                        <option th:each="group : ${groups}"
+                                th:value="${group.id}"
+                                th:text="${group.name}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group w-50">
+                    <label for="firm">Фірма:</label>
+                    <select class="form-control" id="firm" name="productFirm" th:field="*{productFirm}">
+                        <option th:each="firm : ${firms}"
+                                th:value="${firm.id}"
+                                th:text="${firm.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Опис:</label>
+                <textarea class="form-control" id="description" name="description" rows="3" th:text="${product.description}"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="price">Ціна:</label>
+                <input type="number" class="form-control" id="price" name="price" th:value="${product.price}">
+            </div>
+            <div class="form-group">
+                <label for="date">Дата випуску:</label>
+                <input type="date" class="form-control" id="date" name="date" th:value="${#dates.format(product.date, 'yyyy-MM-dd')}">
+            </div>
+            <div class="d-flex flex-row mt-2">
+                <a href="/products/all" class="btn btn-secondary form-group mr-2 w-50">Відмінити</a>
+                <button type="submit" onclick="return validateForm()" class="btn btn-primary form-group w-50">Зберегти</button>
+            </div>
+
+
+        </form>
+    </div>
+
+    <script src="/js/script.js"></script>">
+</body>
+</html>

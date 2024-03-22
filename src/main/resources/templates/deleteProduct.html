@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Підтвердження видалення</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/deleteStyle.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Підтвердження видалення</h1>
+        <h2>Ви впевнені, що хочете видалити наступний продукт?</h2>
+        <p>Назва: <span th:text="${product.name}"></span></p>
+        <p>Група: <span th:text="${product.productGroup.name}"></span></p>
+        <p>Фірма: <span th:text="${product.productFirm.name}"></span></p>
+        <p>Опис: <span th:text="${product.description}"></span></p>
+        <p>Дата випуску: <span th:text="${#dates.format(product.date, 'dd.MM.yyyy')}"></span></p>
+        <p>Ціна: <span th:text="${product.price}"></span></p>
+        <form method="POST" th:action="@{/products/delete/{id}(id=${product.id})}">
+            <a href="/products/all">Ні, повернутися назад</a>
+            <button type="submit">Так, видалити</button>
+        </form>
+    </div>
+</body>
+</html>

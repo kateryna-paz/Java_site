@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Фірми</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <div>
+        <a th:href="@{/}" class="link-back">
+            <i class="fas fa-arrow-left"></i>
+            <span>Назад</span>
+        </a>
+    </div>
+    <div class="header">
+        <h1>Перелік фірм</h1>
+        <button class="button bold add-button" onclick="window.location.href='/firms/create'">+ Додати фірму</button>
+    </div>
+
+    <div class="table">
+        <table class="table table-striped table-bordered table-light">
+            <thead class="h4">
+            <tr>
+                <th>№</th>
+                <th>Назва</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody class="text-md">
+            <tr th:each="firm : ${firms}">
+                <td class="bold" th:text="${firm.id}"></td>
+                <td th:text="${firm.name}"></td>
+                <td>
+                    <a th:href="'/firms/delete/' + ${firm.id}" class="button icon">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

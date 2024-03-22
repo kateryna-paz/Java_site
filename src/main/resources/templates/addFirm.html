@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Створення фірми</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="pb-3">Додавання нової фірми</h1>
+    <form id="form" method="POST" th:action="@{/firms/add}" th:object="${firm}">
+        <div class="form-group">
+            <label for="name">Назва:</label>
+            <input type="text" class="form-control" id="name" name="name" th:value="${firm.name}">
+        </div>
+
+        <div class="d-flex flex-row mt-2">
+            <a href="/firms/all" class="btn btn-secondary form-group mr-2 w-50">Відмінити</a>
+            <button type="submit" onclick="return validateName()" class="btn btn-primary form-group w-50">Зберегти</button>
+        </div>
+
+    </form>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
